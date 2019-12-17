@@ -1,8 +1,6 @@
 package com.crypttp.android
 
 import android.content.Intent
-import androidx.annotation.MainThread
-import androidx.annotation.WorkerThread
 import com.crypttp.android.domain.CrypttpTransactions
 import com.crypttp.android.network.base.Response
 import com.crypttp.android.network.send_transaction_hash.SendTransactionHashCommand
@@ -24,7 +22,6 @@ object Crypttp {
         onDeepLinkResult(deepLinkParser.parseDeepLink(intent))
     }
 
-    @WorkerThread
     fun sendTransactionHashSync(
         transactionId: String,
         transactionHash: String
@@ -32,7 +29,6 @@ object Crypttp {
         return sendTransactionHashInternal(transactionId, transactionHash)
     }
 
-    @MainThread
     fun sendTransactionHashAsync(
         transactionId: String,
         transactionHash: String,

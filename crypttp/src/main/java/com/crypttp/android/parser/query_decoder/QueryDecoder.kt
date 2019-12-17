@@ -1,4 +1,4 @@
-package com.crypttp.android.parser
+package com.crypttp.android.parser.query_decoder
 
 internal interface QueryDecoder {
 

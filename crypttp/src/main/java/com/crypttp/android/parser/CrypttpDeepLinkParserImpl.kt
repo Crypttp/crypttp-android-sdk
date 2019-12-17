@@ -4,6 +4,8 @@ import android.content.Intent
 import com.crypttp.android.domain.CrypttpTransactionInfo
 import com.crypttp.android.domain.CrypttpTransactions
 import com.crypttp.android.parser.data.TransactionParamsObj
+import com.crypttp.android.parser.query_decoder.Base64QueryDecoder
+import com.crypttp.android.parser.query_decoder.QueryDecoder
 import com.crypttp.android.utils.getStringOrDefault
 import com.google.gson.Gson
 
@@ -21,7 +23,8 @@ internal class CrypttpDeepLinkParserImpl(
     private val gson: Gson
 ) : CrypttpDeepLinkParser {
 
-    private val queryDecoder: QueryDecoder = Base64QueryDecoder()
+    private val queryDecoder: QueryDecoder =
+        Base64QueryDecoder()
 
     override fun parseDeepLink(intent: Intent?): CrypttpTransactions? {
         intent ?: return null
