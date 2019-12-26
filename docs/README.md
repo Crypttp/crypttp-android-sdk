@@ -66,7 +66,38 @@ Or if you already have `<intent-filter>` that handle your personal App deeplink 
     android:scheme="https" />
 ```
 
-### 4. Get more avareness for your wallet app
+## Usage
+
+SDK methods are called through the Crypttp class.
+
+Example of deeplink parsing method
+
+```Java
+Crypttp.parseCrypttpDeepLink(intent) { params: CrypttpTransactions? ->
+   if (params != null) {
+       //TODO handle params
+   }
+}
+```
+
+## IMPORTANT
+
+Use this method to send transaction hash to Crypttp 
+
+`If crypttp does not receive hashes from you, then we have the right to disconnect you from the system without explanation`
+
+```Java
+Crypttp.sendTransactionHashAsync(
+   "transactionId",
+   "transactionHash"
+) {
+   if (it is Response.Success) {
+
+   }
+}
+```
+
+### Get more avareness for your wallet app
 
 Signup at [Dashboard](https://crypttp.com/dashboard)
 
