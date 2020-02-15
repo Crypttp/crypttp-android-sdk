@@ -104,11 +104,17 @@ Signup at [Dashboard](https://crypttp.com/dashboard)
 Navigate to Settings/Wallet App
 
 Set:
+
 * Name
+
 * Discription
+
 * Icon
+
 * Available currencies
+
 * Urls to AppStore and Google Play
+
 
 This configuration will help you promote your wallet app. 
 
