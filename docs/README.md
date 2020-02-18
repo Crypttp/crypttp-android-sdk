@@ -80,6 +80,24 @@ Crypttp.parseCrypttpDeepLink(intent) { params: CrypttpTransactions? ->
 }
 ```
 
+#### returned value
+```Kotlin
+data class CrypttpTransactions(
+    val transactionId: String,
+    val transactions: List<CrypttpTransactionInfo>
+)
+
+data class CrypttpTransactionInfo(
+    val coin: String,
+    val amount: String,
+    val to: String,
+    val payload: String,
+    val memo: String,
+    val onSuccessUrl: String,
+    val onFailureUrl: String
+)
+```
+
 ## IMPORTANT
 
 Use this method to send transaction hash to Crypttp 
