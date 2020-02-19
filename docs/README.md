@@ -35,7 +35,6 @@ Add the following code between `<activity>` tags
    <category android:name="android.intent.category.DEFAULT" />
    <category android:name="android.intent.category.BROWSABLE" />
    <data
-        android:host="crypttp.com"
         android:pathPrefix="/crypttp"
         android:scheme="crypttp" />
     <data
@@ -100,9 +99,7 @@ data class CrypttpTransactionInfo(
 
 ## IMPORTANT
 
-Use this method to send transaction hash to Crypttp 
-
-`If crypttp does not receive hashes from you, then we have the right to disconnect you from the system without explanation`
+In your successfull transaction handler add the following code:
 
 ```Java
 Crypttp.sendTransactionHashAsync(
@@ -115,7 +112,11 @@ Crypttp.sendTransactionHashAsync(
 }
 ```
 
-### Get more avareness for your wallet app
+This method help us track paid transactions and provide statistics to our merchants. 
+
+Which in turn helps attract new merchants.
+
+## Get more avareness for your wallet app
 
 Signup at [Dashboard](https://crypttp.com/dashboard)
 
