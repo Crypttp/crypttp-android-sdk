@@ -10,6 +10,7 @@ import com.crypttp.android.utils.getStringOrDefault
 import com.google.gson.Gson
 
 private const val HOST_CRYPTTP = "crypttp.com"
+private const val SDK_SCHEME = "crypttp"
 
 private const val COIN_INDEX = 0
 private const val AMOUNT_INDEX = 1
@@ -29,16 +30,25 @@ internal class CrypttpDeepLinkParserImpl(
     override fun parseDeepLink(intent: Intent?): CrypttpTransactions? {
         intent ?: return null
         val data = intent.data ?: return null
+        val scheme = data.scheme ?: return null
         val host = data.host ?: return null
         val query = data.query ?: ""
-        return parseInternal(host, query)
+        return parseInternal(scheme, host, query)
     }
 
-    private fun parseInternal(host: String, query: String): CrypttpTransactions? {
-        return if (host != HOST_CRYPTTP) {
-            null
+    private fun parseInternal(scheme: String, host: String, query: String): CrypttpTransactions? {
+        return if (host == null) {
+            if (scheme == SDK_SCHEME) {
+                parseDeepLinkParams(queryDecoder.decodeDeepLinkQuery(query))
+            } else {
+                null
+            }
         } else {
-            parseDeepLinkParams(queryDecoder.decodeDeepLinkQuery(query))
+            if (host != HOST_CRYPTTP) {
+                parseDeepLinkParams(queryDecoder.decodeDeepLinkQuery(query))
+            } else {
+                null
+            }
         }
     }
 
