@@ -67,11 +67,13 @@ Or if you already have `<intent-filter>` that handle your personal App deeplink 
 
 ## Usage
 
+### 1.
+
 SDK methods are called through the Crypttp class.
 
 Example of deeplink parsing method
 
-```Java
+```Kotlin
 Crypttp.parseCrypttpDeepLink(intent) { params: CrypttpTransactions? ->
    if (params != null) {
        //TODO handle params
@@ -97,11 +99,11 @@ data class CrypttpTransactionInfo(
 )
 ```
 
-## IMPORTANT
+### 2.
 
 In your successfull transaction handler add the following code:
 
-```Java
+```Kotlin
 Crypttp.sendTransactionHashAsync(
    "transactionId",
    "transactionHash"
@@ -115,6 +117,22 @@ Crypttp.sendTransactionHashAsync(
 This method help us track paid transactions and provide statistics to our merchants. 
 
 Which in turn helps attract new merchants.
+
+### 3.
+
+After step `2.` add code to return user to the webpage or app from where user was routed to wallet.
+
+That is important to provide good UX and to let merchant know that transaction was successfully made or failed.
+
+```Kotlin
+val openURL = Intent(android.content.Intent.ACTION_VIEW)
+    openURL.data = Uri.parse(onSuccessUrl)
+startActivity(openURL)
+
+val openURL = Intent(android.content.Intent.ACTION_VIEW)
+    openURL.data = Uri.parse(onFailureUrl)
+startActivity(openURL)
+```
 
 ## Get more avareness for your wallet app
 
