@@ -28,9 +28,10 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="crypttp.com"
-                    android:pathPrefix="/crypttp"
-                    android:scheme="crypttp" />
+                    android:host="crypttp"
+                    android:pathPrefix=""
+                    android:scheme="crypttp"
+                    tools:ignore="AppLinkUrlError" />
 
                 <!-- Second one to open from Web -->
                 <data

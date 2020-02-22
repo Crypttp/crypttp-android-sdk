@@ -10,6 +10,7 @@ import com.crypttp.android.utils.getStringOrDefault
 import com.google.gson.Gson
 
 private const val HOST_CRYPTTP = "crypttp.com"
+private const val HOST_CRYPTTP_2 = "crypttp"
 
 private const val COIN_INDEX = 0
 private const val AMOUNT_INDEX = 1
@@ -35,14 +36,17 @@ internal class CrypttpDeepLinkParserImpl(
     }
 
     private fun parseInternal(host: String, query: String): CrypttpTransactions? {
-        return if (host != HOST_CRYPTTP) {
+        return if (host != HOST_CRYPTTP && host != HOST_CRYPTTP_2) {
             null
         } else {
             parseDeepLinkParams(queryDecoder.decodeDeepLinkQuery(query))
         }
     }
 
-    private fun parseDeepLinkParams(query: String): CrypttpTransactions {
+    private fun parseDeepLinkParams(query: String): CrypttpTransactions? {
+        if (query.isEmpty()) {
+            return null
+        }
         val cryptoParams =
             gson.fromJson<TransactionParamsObj>(query, TransactionParamsObj::class.java)
         return CrypttpTransactions(
