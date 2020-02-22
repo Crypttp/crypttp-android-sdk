@@ -31,12 +31,14 @@ Add the following code between `<activity>` tags
 
 ```XML
 <intent-filter>
-   <action android:name="android.intent.action.VIEW" />
-   <category android:name="android.intent.category.DEFAULT" />
-   <category android:name="android.intent.category.BROWSABLE" />
-   <data
-        android:pathPrefix="/crypttp"
-        android:scheme="crypttp" />
+    <action android:name="android.intent.action.VIEW" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <category android:name="android.intent.category.BROWSABLE" />
+    <data
+        android:host="crypttp"
+        android:pathPrefix=""
+        android:scheme="crypttp"
+        tools:ignore="AppLinkUrlError" />
     <data
         android:host="crypttp.com"
         android:pathPrefix="/crypttp"
@@ -52,9 +54,10 @@ Or if you already have `<intent-filter>` that handle your personal App deeplink 
 
 ```XML
 <data
-    android:host="crypttp.com"
-    android:pathPrefix="/crypttp"
-    android:scheme="crypttp" />
+    android:host="crypttp"
+    android:pathPrefix=""
+    android:scheme="crypttp"
+    tools:ignore="AppLinkUrlError" />
 <data
     android:host="crypttp.com"
     android:pathPrefix="/crypttp"
