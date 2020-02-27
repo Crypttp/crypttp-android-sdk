@@ -47,6 +47,12 @@ Add the following code between `<activity>` tags
         android:host="crypttp.com"
         android:pathPrefix="/crypttp"
         android:scheme="https" />
+
+    <!-- register your app deeplink -->
+    <data
+        android:host="crypttp"
+        android:pathPrefix=""
+        android:scheme="yourappname" />
 </intent-filter>
 ```
 
@@ -66,6 +72,48 @@ Or if you already have `<intent-filter>` that handle your personal App deeplink 
     android:host="crypttp.com"
     android:pathPrefix="/crypttp"
     android:scheme="https" />
+
+<!-- register your app deeplink -->
+<data
+    android:host="crypttp"
+    android:pathPrefix=""
+    android:scheme="yourappname" />
+```
+
+### 3. Register your app link in Crypttp system
+
+Signup at [Dashboard](https://crypttp.com/dashboard)
+
+Navigate to Settings/Wallet App
+
+Set:
+
+* Name
+
+* Deeplink
+
+* Discription
+
+* Icon
+
+* Available currencies
+
+* Urls to AppStore
+
+In addition this configuration will help us promote your wallet app. 
+
+Every user that has no wallet installed while paying at Crypttp merchants will be redirected to a special page where user can find featured wallets
+
+### 4. Register first install handler
+
+Get your merchant id in dashboard
+
+<img src="https://i.imgur.com/fyW4P6s.png" height="100%" />
+
+```Kotlin
+val openURL = Intent(android.content.Intent.ACTION_VIEW)
+    openURL.data = Uri.parse("https://api.crypttp.com/track/installation?id=<your merchant id>")
+startActivity(openURL)
 ```
 
 ## Usage
@@ -136,26 +184,3 @@ val openURL = Intent(android.content.Intent.ACTION_VIEW)
     openURL.data = Uri.parse(onFailureUrl)
 startActivity(openURL)
 ```
-
-## Get more avareness for your wallet app
-
-Signup at [Dashboard](https://crypttp.com/dashboard)
-
-Navigate to Settings/Wallet App
-
-Set:
-
-* Name
-
-* Discription
-
-* Icon
-
-* Available currencies
-
-* Urls to AppStore and Google Play
-
-
-This configuration will help you promote your wallet app. 
-
-Every user that has no wallet installed while paying at Crypttp merchants will be redirected to a special page where user can find featured wallets
